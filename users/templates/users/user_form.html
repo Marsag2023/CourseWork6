@@ -1,0 +1,26 @@
+{% extends 'mailings/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-12">
+    <form class="row" method="post" id="createForm" enctype="multipart/form-data">
+        <div class="col-5">
+            <div class="card">
+                <div class="card-header text-center">
+                    <div class="card-body text-center">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                     <button type="submit" class="btn btn-lg btn-block btn-outline-primary">
+                            Регистрация
+                     </button>
+                    {% if user.is_anonymous %}
+                     <a class="btn btn-lg btn-block btn-outline-danger" href="">После нажатия кнопки "Регистрация"
+                         Вам будет отправлено письмо по указанному Вами электронному адресу.
+                         Обязательно активируйте ссылку. Не забудьте заполнить свой профиль(кнопка Профиль)</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>>
+    </form>
+</div>
+{% endblock %}

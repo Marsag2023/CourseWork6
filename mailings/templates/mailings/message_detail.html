@@ -1,0 +1,27 @@
+{% extends 'mailings/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h4 class="my-0 font-weight-normal">Название: {{ message.title }}</h4>
+                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>Содержание: {{message.content}}</li>
+                    </ul>
+                    <div class="btn-group">
+                         {% if user.is_authenticated or user.is_superuser %}
+                        <a href="{% url 'mailings:message_update' object.pk %}"
+                           class="btn btn-sm btn-outline-primary">Редактировать</a>
+                        <a href="{% url 'mailings:message_delete' object.pk %}"
+                           class="btn btn-sm btn-outline-danger">Удалить</a>
+                        {% endif %}
+                        <a href="{% url 'mailings:message_list' %}"
+                           class="btn btn-sm btn-outline-success">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
